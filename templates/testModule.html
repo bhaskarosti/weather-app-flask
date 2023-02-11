@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather app</title>
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!-- bootstrap icons  -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    >
+
+    <!-- css -->
+    <!-- <link rel="stylesheet" href="/weather-app/static/css/style.css"> -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center bi-cloud-haze">Weather in</h1>
+        <form action="/" class="d-grid gap-2" method="post">
+            <input class = "p-4 form-control text-muted shadow-sm" type="text" name="city" placeholder="Which City?">
+            <button class = "btn btn-dark btn-lg btn-block">Check</button>
+        </form>
+        <div class="alert alert-danger my-3 text-center {{weather.errorPrompt}}" role="alert">
+            City not found. Try another!
+          </div>
+        <div class="card rounded my-3 shadow-lg {{ weather.visibility }}">
+            <div class="card-top text-center">
+                <div class="city-name my-3 fs-1">
+                    <p>{{ weather.city }} <img src="https://flagcdn.com/28x21/{{weather.country}}.png" alt="nepal flag"></p>
+                    
+                    <!-- <span>....</span> -->
+                </div>
+                <!-- <div class="icon-container card shadow mx-auto"> -->
+                    <img src="https://openweathermap.org/img/wn/{{weather.logo}}@4x.png" alt="Image">
+                    <p class="fs-2 my-2">{{ weather.temperature }}&deg;C</p>
+                    <p class="fs-2 my-2">{{ weather.description }}</p>
+                    <!-- </div> -->
+                </div>
+            <div class="card-body">
+                <!-- <div class="card-mid row">
+                    <div class="col-8 text-center">
+                        <p>Temperature:</p>
+                    </div>
+                    <div class="col-4">
+                        <p>{{ weather.temperature }}&deg;C</p>
+                        <p>{{ weather.temperature }}&deg;C</p>
+                        <p>{{ weather.temperature }}&deg;C</p>
+                    </div>
+                </div> -->
+                <!-- <div class="icon-container card shadow mx-auto">
+                    <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="LOGO">
+                </div> -->
+                <div class="card-bottom px-5 py-4 row">
+                    <div class="col text-center">
+                        <!-- <p>30&deg;C</p> -->
+                        <p class="fs-3 my-2">Min temp:</p>
+                        <p class="fs-3 my-2">Max temp:</p>
+                        <p class="fs-3 my-2">Humidity:</p>
+                        <p class="fs-3 my-2">Pressure:</p>
+                        <p class="fs-3 my-2">Feels like:</p>
+                        <!-- <span>Feels Like</span> -->
+                    </div>
+                    <div class="col text-center">
+                        <p class="fs-3 my-2">{{ weather.minTemp }}&deg;C</p>
+                        <p class="fs-3 my-2">{{ weather.maxTemp }}&deg;C</p>
+                        <p class="fs-3 my-2">{{ weather.humidity }} %</p>
+                        <p class="fs-3 my-2">{{ weather.pressure }} mb</p>
+                        <p class="fs-3 my-2">{{ weather.feelsLike }}&deg;C</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- <h1>Weather in</h1>
+    <input type="text" name="city" id="city" placeholder="What City?">
+    <button>Search</button> -->
+</body>
+</html>
